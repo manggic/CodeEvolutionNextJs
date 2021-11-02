@@ -81,4 +81,39 @@ function Home() {
 
 ## 7. Pre-Rendering
 
-1.
+1.It refer to the process of generating HTML in advance with the neccesary data for a page in our app 2.It can result in better performance and SEO
+
+### Static Generation
+
+1. nextJs by default will pre-render every page in our app.
+
+### Server Side Rendering
+
+- getStaticProps
+
+1. It runs only on server-side
+2. The function will never run client-side
+3. The code you write inside getStaticProps won't even be included in JS bundle that is sent to the browser
+4. You can write server side code in getStaticProps
+5. Accessing the file system using the fs module or querying a database can be done inside getStaticProps
+6. You don't have to worry about including API keys in getStaticProps as that won't make it to the browser
+7. getStaticProps is allowed only in page and cannot be run from a regular component file
+8. It is used only for pre-rendering and not client side data fetching.
+9. getStaticProps should return an object and object should contain a props key which is an object
+10. getStaticProps will run at build time.
+11. During development ( yarn dev ), getStaticProps runs on every request
+
+```
+export async function getStaticProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+
+  const data = await res.json();
+
+  console.log(data);
+  return {
+    props: {
+      users: data,
+    },
+  };
+}
+```
