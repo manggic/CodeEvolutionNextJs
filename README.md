@@ -137,11 +137,35 @@ Next.js generates a JSON file holding the result of running getStaticProps
 It's take three value
 
 1. false
-   The paths returned from getStaticPaths will be rendered to HTML at build time by
+
+1) The paths returned from getStaticPaths will be rendered to HTML at build time by
    getStateProps
-   if Fallback is set to false, then any paths not returned by getStaticPaths will result in a 404 page
-   The false value is most suitable if you have an app with a small no of paths to pre-render
+2) if Fallback is set to false, then any paths not returned by getStaticPaths will result in a 404 page
+3) The false value is most suitable if you have an app with a small no of paths to pre-render
    When new pages are not added often
-   A blog site with a few articles is a good example for fallback set to false
+4) A blog site with a few articles is a good example for fallback set to false
+
 2. true
-3. blocking
+
+1)  The path that have not been generated at build time will not result in a 404 page.Instead
+    Nextjs will serve a fallback version of the page on the first request to such a path
+2)  In the background Nextjs will statically generate the requested path HTML and JSON.
+    This includes running getStaticProps
+3)  When that's done, browser receive the JSON for the generated path.
+    This will used to automatically render the page with the required props.
+    From the user's perspective the page will be swapped from the fallback pages to the full pages
+4)  At the same time, Nextjs keeps track of the new list of pre-rendered pages.Subsequent requests to the same path will
+    serve the generated page, just like other pages pre-rendered at build time
+
+- <b>when?</b>
+
+1.  The true value is suitable if your app has a very large number of static pages that depends on the data
+2.  A large e-commerce site
+3.  You want all the product pages to be pre-rendered but if you have a few thousand products, build can take a
+    really long time
+4.  You may statically generates a small subset of products that are popular and use fallback : true for the rest.
+5.  When someone requests a page that's not generated yet, user will see the page with a loading indicator.
+6.  shortly After, getStaticProps finishes and the page will be rendered with the requested data.From then onwards
+    everyone who requests the same page will get the statically pre-rendered page.
+
+3) blocking

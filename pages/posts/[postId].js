@@ -1,4 +1,12 @@
+import { useRouter } from "next/router";
+
 function Post({ post }) {
+  const router = useRouter();
+
+  // fallback UI if page is not found and fallback = true
+  if (router.isFallback) {
+    return <h1>loading................</h1>;
+  }
   return (
     <>
       <h2>
@@ -26,7 +34,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -39,6 +47,8 @@ export async function getStaticProps(context) {
   const res = await fetch(URL);
 
   const data = await res.json();
+
+  console.log(`Generating pages   /posts/${params.postId}`);
 
   return {
     props: {
