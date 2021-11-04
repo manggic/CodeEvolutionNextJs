@@ -3,7 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 function Home() {
-  return <h1>hello</h1>;
+  return (
+    <div>
+      <Link href="/posts">
+        <a>Posts</a>
+      </Link>
+    </div>
+  );
 }
 
 // function Home() {

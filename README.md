@@ -86,6 +86,12 @@ function Home() {
 ### Static Generation
 
 1. nextJs by default will pre-render every page in our app.
+2. Static Generation is the method of pre-rendering where the HTML pages are generated at the build time with or without external data.
+3. Export getStaticProps function for external data
+4. HTML,js and JSON file are generated
+5. If you navigate directly to the page route, the HTML file is served
+6. If you navigate to the page route from a diff route, the page is created client side using the
+   js and JSON prefetched from the server
 
 ### Server Side Rendering
 
@@ -117,3 +123,25 @@ export async function getStaticProps() {
   };
 }
 ```
+
+### build the app
+
+1.yarn build - .next folder get created by this command
+2.when a page with getStaticProps is pre-rendered at build time, in addition to the page HTML file,
+Next.js generates a JSON file holding the result of running getStaticProps
+3.The JSON file will be used in client-side routing through next/link or next/router
+4.When u navigate a page that's pre-rendered using getStaticProps, Next.js fetches the JSON file (pre-computed at build time )and uses it as the props to create a page component client-side
+
+### fallback
+
+It's take three value
+
+1. false
+   The paths returned from getStaticPaths will be rendered to HTML at build time by
+   getStateProps
+   if Fallback is set to false, then any paths not returned by getStaticPaths will result in a 404 page
+   The false value is most suitable if you have an app with a small no of paths to pre-render
+   When new pages are not added often
+   A blog site with a few articles is a good example for fallback set to false
+2. true
+3. blocking
