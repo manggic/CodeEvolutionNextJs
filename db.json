@@ -1,5 +1,31 @@
 {
+   "dashboard":{
+      "posts": 5,
+      "likes": 100,
+      "followers": 20,
+      "following": 50
+   },
     "news":[
+       {
+           "id":1,
+           "title": "Article 1",
+           "description": "DDDescription 1",
+           "category": "sports"
+       },  
+       {
+        "id":2,
+        "title": "Article 2",
+        "description": "description 2",
+        "category": "politics"
+    },
+    {
+        "id":3,
+        "title": "Article 3",
+        "description": "description 3",
+        "category": "sports"
+    }
+    ],
+    "products":[
        {
            "id":1,
            "title": "Article 1",
