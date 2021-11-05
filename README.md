@@ -203,6 +203,7 @@ It's take three value
 6. getStaticProps will help fetch the data on the initial request but it is then cached for subsequent requests
 7. Incremental static regeneration can help but if revalidate is 1 sec, we still might not see the most upto date
    news when the regeneartion is happening in the background
+8. rather fetch the data on the client side by making a get request from the component, but no SEO
 
 ### Server Side Rendering
 
