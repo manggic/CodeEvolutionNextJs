@@ -1,22 +1,22 @@
 {
-    "products":[
+    "news":[
        {
            "id":1,
-           "title": "Product 1",
-           "price" :500,
-           "description": "description 1"
+           "title": "Article 1",
+           "description": "description 1",
+           "category": "sports"
        },  
        {
         "id":2,
-        "title": "Product 2",
-        "price" :1050,
-        "description": "description 2"
+        "title": "Article 2",
+        "description": "description 2",
+        "category": "politics"
     },
     {
         "id":3,
-        "title": "Product 3",
-        "price" :3000,
-        "description": "description 3"
+        "title": "Article 3",
+        "description": "description 3",
+        "category": "sports"
     }
     ]
   }

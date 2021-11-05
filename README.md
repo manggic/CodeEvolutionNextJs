@@ -207,6 +207,11 @@ It's take three value
 
 ### Server Side Rendering
 
+1. NextJs allows u to pre-render a page not at build time but at request time
+2. The HTML is generated for every incoming request
+3. SSR is required when u need to fetch data per request and also when u need to fetch personalize
+   data keeping in mind SEO
+
 - getStaticProps
 
 1. It runs only on server-side
@@ -219,7 +224,8 @@ It's take three value
 8. It is used only for pre-rendering and not client side data fetching.
 9. getStaticProps should return an object and object should contain a props key which is an object
 10. getStaticProps will run at build time.
-11. During development ( yarn dev ), getStaticProps runs on every request
+11. getServerSideProps will run at request time
+12. During development ( yarn dev ), getStaticProps runs on every request
 
 ```
 export async function getStaticProps() {
