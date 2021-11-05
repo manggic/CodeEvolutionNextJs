@@ -269,3 +269,8 @@ export async function getStaticProps() {
 3. API routes allow you to create RESTful endpoint as part of your Nextjs App folder structure
 4. Within the pages folder, you can create a folder called 'api'
 5. Within the api folder, u can define all the APIs for your app
+6. API routing mechanism is similar to page based routing mechanism
+7. APIs are associated with a route based on their file name
+8. Every API route exports a default function typically named as handler function
+9. The handler fucntion receive the request and response as parameters
+10. We should not call our own API route for pre-rendering content( inside getStaticProps/getStaticPaths )
