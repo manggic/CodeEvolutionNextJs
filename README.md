@@ -112,37 +112,6 @@ function Home() {
    1.E-commerce app is not an application which u can build and deploy once in a while.
    Product details, expecially product prices can vary everyday.
 
-### Server Side Rendering
-
-- getStaticProps
-
-1. It runs only on server-side
-2. The function will never run client-side
-3. The code you write inside getStaticProps won't even be included in JS bundle that is sent to the browser
-4. You can write server side code in getStaticProps
-5. Accessing the file system using the fs module or querying a database can be done inside getStaticProps
-6. You don't have to worry about including API keys in getStaticProps as that won't make it to the browser
-7. getStaticProps is allowed only in page and cannot be run from a regular component file
-8. It is used only for pre-rendering and not client side data fetching.
-9. getStaticProps should return an object and object should contain a props key which is an object
-10. getStaticProps will run at build time.
-11. During development ( yarn dev ), getStaticProps runs on every request
-
-```
-export async function getStaticProps() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
-
-  const data = await res.json();
-
-  console.log(data);
-  return {
-    props: {
-      users: data,
-    },
-  };
-}
-```
-
 ### build the app
 
 1.yarn build - .next folder get created by this command
@@ -214,7 +183,7 @@ It's take three value
 1. In the getStaticProps function, apart from the props key, we can specify a revalidate key
 2. The value for revalidate is the number of sec after which a page re-generation can occur
 
-<b>Regenration </b>
+<b>Regeneration </b>
 
 1. A re-generation is initated only if user makes a request after the revalidation time.
 2. if a user visits our product details page but there is no other user to hitting that page
@@ -223,3 +192,45 @@ It's take three value
 4. It simple denotes the time after which if a user make a request a re-generation has to be initiated
 5. The re-generation can also fail and the previously cached HTML could be served till the subsequent
    re-generation succeed
+
+<b>Problems with Static Generation</b>
+
+1. We cannot fetch data at request time
+2. With not being able to fetch data per request, we run into the problem of stale data
+3. Let's say we are building a news website
+4. The content is very dynamic in the sense that new articles can be published almost every sec
+5. getStaticProps will fetch the news at build time which is not suitable at all
+6. getStaticProps will help fetch the data on the initial request but it is then cached for subsequent requests
+7. Incremental static regeneration can help but if revalidate is 1 sec, we still might not see the most upto date
+   news when the regeneartion is happening in the background
+
+### Server Side Rendering
+
+- getStaticProps
+
+1. It runs only on server-side
+2. The function will never run client-side
+3. The code you write inside getStaticProps won't even be included in JS bundle that is sent to the browser
+4. You can write server side code in getStaticProps
+5. Accessing the file system using the fs module or querying a database can be done inside getStaticProps
+6. You don't have to worry about including API keys in getStaticProps as that won't make it to the browser
+7. getStaticProps is allowed only in page and cannot be run from a regular component file
+8. It is used only for pre-rendering and not client side data fetching.
+9. getStaticProps should return an object and object should contain a props key which is an object
+10. getStaticProps will run at build time.
+11. During development ( yarn dev ), getStaticProps runs on every request
+
+```
+export async function getStaticProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+
+  const data = await res.json();
+
+  console.log(data);
+  return {
+    props: {
+      users: data,
+    },
+  };
+}
+```
