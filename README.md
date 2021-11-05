@@ -92,6 +92,11 @@ function Home() {
 5. If you navigate directly to the page route, the HTML file is served
 6. If you navigate to the page route from a diff route, the page is created client side using the
    js and JSON prefetched from the server
+7. The pre-rendered static pages can be pushed to CDN,cached and served to clients across the globe
+   almost instantly.
+8. Static content is fast and better for SEO as they are immediately indexed by search engines.
+9. Static generation with getStaticProps for data fetching and getStaticPaths for dynamic pages
+   seems like a really good approach to a wide variety of app in production
 
 ### Server Side Rendering
 
@@ -169,3 +174,17 @@ It's take three value
     everyone who requests the same page will get the statically pre-rendered page.
 
 3) blocking
+
+1. The path that have not been generated at build time will not result in a 404 page.
+   Instead on first request, nextJs will render the page on the server and return the generated HTML
+2. When that's done, browser receive the HTML for the generated path.From the user's perspective,
+   it will transition from 'browser is requesting the page' to 'full page is loaded', There is no flash of loading/fallback state
+3. At the same time, NextJs keeps track of the new list of pre-rendered pages.
+   Subsequent request to the same path will serve the generated page,just like other pages pre-rendered at build time
+
+- <b>when? </b>
+
+1. On a UX level sometimes, people prefer the page to be loaded without a loading indicator.
+   if the wait time is a few milli seconds. This help avoid the layout shift
+
+2. Some crawlers did not support JavaScript. The loading page would be rendered and then the full page would be loaded which was causing a problem.

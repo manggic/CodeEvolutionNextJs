@@ -4,9 +4,9 @@ function Post({ post }) {
   const router = useRouter();
 
   // fallback UI if page is not found and fallback = true
-  if (router.isFallback) {
-    return <h1>loading................</h1>;
-  }
+  // if (router.isFallback) {
+  //   return <h1>loading................</h1>;
+  // }
   return (
     <>
       <h2>
@@ -34,7 +34,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
