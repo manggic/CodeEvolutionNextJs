@@ -261,3 +261,11 @@ export async function getStaticProps() {
 3. getServerSideProps function helps with SSR data fetching
 4. Combining pre-rendering with client-side data fetching
 5. Shallow routing - Routing without calling getStaticProps/getServerSideProps
+
+## API Routes
+
+1. NextJs is a full stack framework
+2. You can write the UI code in react and also write APIs that can be called from the FE code
+3. API routes allow you to create RESTful endpoint as part of your Nextjs App folder structure
+4. Within the pages folder, you can create a folder called 'api'
+5. Within the api folder, u can define all the APIs for your app
