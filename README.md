@@ -274,3 +274,10 @@ export async function getStaticProps() {
 8. Every API route exports a default function typically named as handler function
 9. The handler fucntion receive the request and response as parameters
 10. We should not call our own API route for pre-rendering content( inside getStaticProps/getStaticPaths )
+
+## Styling
+
+1. Global: In our app, we need to import the CSS file within pages/\_app.js
+2. Component level : nextJs supports CSS Modules using a [name].module.css naming convention
+3. SASS Support : install sass package
+4. CSS-in-Js : inline styles and Styled Components
