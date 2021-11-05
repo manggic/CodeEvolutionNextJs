@@ -241,3 +241,23 @@ export async function getStaticProps() {
   };
 }
 ```
+
+### Pre-rendering and Data fetching summary
+
+<b>Static Genration</b>
+
+1. A method of pre-rendering where the HTML pages are generated at the build time
+2. Pages can be build once, cached by a CDN and served to client instantly
+3. For a normal page use getStaticProps function to fetch the data ahead of time
+4. For a dynamic page, you also need the getStaticPaths function
+5. fallback : false, true , blocking
+6. Pages cannot be updated without a full re-build
+7. Incremental static regeneration
+
+<b>Server side rendering</b>
+
+1. fetch data at request time
+2. Personalize data based on user info in the incoming request
+3. getServerSideProps function helps with SSR data fetching
+4. Combining pre-rendering with client-side data fetching
+5. Shallow routing - Routing without calling getStaticProps/getServerSideProps
