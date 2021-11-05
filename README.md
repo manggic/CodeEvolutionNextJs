@@ -98,6 +98,20 @@ function Home() {
 9. Static generation with getStaticProps for data fetching and getStaticPaths for dynamic pages
    seems like a really good approach to a wide variety of app in production
 
+- Issue
+
+1. The build time is proportional to the number of pages in the app
+   example :
+   1. A page takes 100ms to build
+   2. E-commerce app with 100 products takes 10 sec to build
+   3. E-commerce app with 100,000 products takes > 2.5 hours to build
+   4. It's not just the time , there are cost implication as well
+   5. The problem only get worse with more product you add to the system as every new page
+      increases the overall build time
+2. A page once generated, can contain stale data till the time you rebuild the app
+   1.E-commerce app is not an application which u can build and deploy once in a while.
+   Product details, expecially product prices can vary everyday.
+
 ### Server Side Rendering
 
 - getStaticProps
