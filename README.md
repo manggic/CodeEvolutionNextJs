@@ -202,3 +202,24 @@ It's take three value
    if the wait time is a few milli seconds. This help avoid the layout shift
 
 2. Some crawlers did not support JavaScript. The loading page would be rendered and then the full page would be loaded which was causing a problem.
+
+### Incremental Static Regeneration
+
+1. There was a need to update only those pages which need a changes without having to rebuild the entite app
+2. With ISR, NextJs allow you to update static pages after u have built your app
+3. You can statically generate individual pages without needing to rebuild the entire site, effectively solving the issue of dealing with stale(previous data) data
+
+<b>How? </b>
+
+1. In the getStaticProps function, apart from the props key, we can specify a revalidate key
+2. The value for revalidate is the number of sec after which a page re-generation can occur
+
+<b>Regenration </b>
+
+1. A re-generation is initated only if user makes a request after the revalidation time.
+2. if a user visits our product details page but there is no other user to hitting that page
+   the entire day, the re-generation does not happen
+3. Revalidate does not mean the page automatically re-generates every 10 seconds
+4. It simple denotes the time after which if a user make a request a re-generation has to be initiated
+5. The re-generation can also fail and the previously cached HTML could be served till the subsequent
+   re-generation succeed
