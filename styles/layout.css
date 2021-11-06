@@ -1,0 +1,13 @@
+.layout-header {
+  background-color: blue;
+  color: pink;
+  font-size: 30px;
+  text-align: center;
+}
+
+.layout-footer {
+  background-color: yellow;
+  color: blueviolet;
+  font-size: 30px;
+  text-align: center;
+}
